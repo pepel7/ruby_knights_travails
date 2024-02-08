@@ -7,10 +7,9 @@ class Knight
 
   def knight_moves(start_square, end_square, current = nil, queue = [moves_list_from(start_square)])
     return 'Error: off the board' if end_square.off? || start_square.off?
-    return current if current&.square == end_square || queue.empty?
+    return current if current&.square == end_square
 
     current = queue.shift
-
     current.next&.each { |el| queue << el}
 
     target_square = knight_moves(start_square, end_square, current, queue)
