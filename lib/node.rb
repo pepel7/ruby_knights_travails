@@ -16,7 +16,7 @@ class Node
 
   def generate_next(coord, parent)
     next_squares = []
-    calc_possible_nexts(coord, next_squares)
+    possible_nexts(coord, next_squares)
 
     record_existing_above(parent)
     record_waiting_above(parent, next_squares)
@@ -29,7 +29,7 @@ class Node
 
   private
 
-  def calc_possible_nexts(coord, next_squares)
+  def possible_nexts(coord, next_squares)
     DIRECTIONS.each do |direction|
       possible_next_square = [(coord[0] + direction[0]), (coord[1] + direction[1])]
       next_squares << possible_next_square unless possible_next_square.off?
