@@ -16,7 +16,7 @@ class Node
 
   def generate_next(coord, parent)
     next_squares = []
-    possible_nexts(coord, next_squares)
+    find_possible_nexts(coord, next_squares)
 
     record_existing_above(parent)
     record_waiting_above(parent, next_squares)
@@ -29,7 +29,7 @@ class Node
 
   private
 
-  def possible_nexts(coord, next_squares)
+  def find_possible_nexts(coord, next_squares)
     DIRECTIONS.each do |direction|
       possible_next_square = [(coord[0] + direction[0]), (coord[1] + direction[1])]
       next_squares << possible_next_square unless possible_next_square.off?
@@ -38,7 +38,7 @@ class Node
 
   def record_existing_above(parent)
     temp_parent = parent
-    until temp_parent.nil? 
+    until temp_parent.nil?
       @@already_existing_in_path << temp_parent.square unless @@already_existing_in_path.include?(temp_parent.square)
       temp_parent = temp_parent.previous
     end
@@ -54,6 +54,6 @@ end
 
 class Array
   def off?
-    self.any? { |coord| !coord.between?(0, 7) }
+    any? { |coord| !coord.between?(0, 7) }
   end
 end
